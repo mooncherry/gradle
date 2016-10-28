@@ -9,7 +9,7 @@ import jetbrains.buildServer.configs.kotlin.v10.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.script
 
 object Gradle_Branches_Checkpoints_Stage4BranchCoverage : BuildType({
-    uuid = "6eec7328-e304-4907-8e22-310339234a0a"
+    uuid = "6eec7328-e304-4907-8e22-310339234a09"
     extId = "Gradle_Branches_Checkpoints_Stage4BranchCoverage"
     name = "Stage 4 - Partial Coverage"
     description = "Passes devBuild on linux and windows with partial test coverage"

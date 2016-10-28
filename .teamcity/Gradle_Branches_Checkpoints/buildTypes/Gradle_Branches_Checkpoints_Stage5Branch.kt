@@ -12,7 +12,7 @@ import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger.*
 import jetbrains.buildServer.configs.kotlin.v10.triggers.vcs
 
 object Gradle_Branches_Checkpoints_Stage5Branch : BuildType({
-    uuid = "0b4a6ade-eaf6-4718-849e-c3372180711f"
+    uuid = "0b4a6ade-eaf6-4718-849e-c3372180711e"
     extId = "Gradle_Branches_Checkpoints_Stage5Branch"
     name = "Stage 5 - Final"
     description = "Passes all QA stages"
