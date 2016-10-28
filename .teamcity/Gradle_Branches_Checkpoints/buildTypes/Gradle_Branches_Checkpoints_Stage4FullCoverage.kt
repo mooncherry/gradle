@@ -17,6 +17,7 @@ object Gradle_Branches_Checkpoints_Stage4FullCoverage : BuildType({
     artifactRules = "build/build-receipt.properties"
 
     vcs {
+        root("Gradle_Branches_GradlePersonalBranches")
         checkoutMode = CheckoutMode.ON_AGENT
     }
 
