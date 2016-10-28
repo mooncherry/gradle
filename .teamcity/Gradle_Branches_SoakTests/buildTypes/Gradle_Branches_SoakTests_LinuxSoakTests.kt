@@ -7,9 +7,6 @@ import jetbrains.buildServer.configs.kotlin.v10.buildSteps.ScriptBuildStep
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.ScriptBuildStep.*
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v10.triggers.ScheduleTrigger
-import jetbrains.buildServer.configs.kotlin.v10.triggers.ScheduleTrigger.*
-import jetbrains.buildServer.configs.kotlin.v10.triggers.schedule
 
 object Gradle_Branches_SoakTests_LinuxSoakTests : BuildType({
     uuid = "e1e9f28e-1964-4fa6-9cce-abb6b90b3597"
@@ -59,19 +56,6 @@ return -1
 else
 echo "${'$'}REPO does not exist"
 fi"""
-        }
-    }
-
-    triggers {
-        schedule {
-            schedulingPolicy = daily {
-                hour = 0
-                minute = 30
-            }
-            triggerBuild = always()
-            param("cronExpression_hour", "0")
-            param("cronExpression_min", "30")
-            param("dayOfWeek", "Sunday")
         }
     }
 

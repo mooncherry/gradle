@@ -7,14 +7,11 @@ import jetbrains.buildServer.configs.kotlin.v10.buildSteps.ScriptBuildStep
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.ScriptBuildStep.*
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger
-import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger.*
-import jetbrains.buildServer.configs.kotlin.v10.triggers.vcs
 
-object Gradle_Branches_Checkpoints_Stage5Final : BuildType({
+object Gradle_Branches_Checkpoints_Stage5Full : BuildType({
     uuid = "0b4a6ade-eaf6-4718-849e-c3372180711f"
-    extId = "Gradle_Branches_Checkpoints_Stage5Final"
-    name = "Stage 5 - Final"
+    extId = "Gradle_Branches_Checkpoints_Stage5Full"
+    name = "Stage 5 - Full"
     description = "Passes all QA stages"
 
     artifactRules = "build/build-receipt.properties"
@@ -52,14 +49,6 @@ return 1
 else
 echo "${'$'}REPO does not exist"
 fi"""
-        }
-    }
-
-    triggers {
-        vcs {
-            quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_CUSTOM
-            quietPeriod = 90
-            triggerRules = "-:design-docs"
         }
     }
 

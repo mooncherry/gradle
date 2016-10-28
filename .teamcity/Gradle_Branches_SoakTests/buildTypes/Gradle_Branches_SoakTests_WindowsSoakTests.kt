@@ -7,9 +7,6 @@ import jetbrains.buildServer.configs.kotlin.v10.buildSteps.ScriptBuildStep
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.ScriptBuildStep.*
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v10.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v10.triggers.ScheduleTrigger
-import jetbrains.buildServer.configs.kotlin.v10.triggers.ScheduleTrigger.*
-import jetbrains.buildServer.configs.kotlin.v10.triggers.schedule
 
 object Gradle_Branches_SoakTests_WindowsSoakTests : BuildType({
     uuid = "a25475f5-9a93-4d36-97aa-4b6b6da4eedc"
@@ -53,19 +50,6 @@ build/errorLogs/** => errorLogs"""
     RMDIR /S /Q %teamcity.agent.jvm.user.home%\.m2\repository
     EXIT -1
 )"""
-        }
-    }
-
-    triggers {
-        schedule {
-            schedulingPolicy = daily {
-                hour = 0
-                minute = 30
-            }
-            triggerBuild = always()
-            param("cronExpression_hour", "0")
-            param("cronExpression_min", "30")
-            param("dayOfWeek", "Sunday")
         }
     }
 

@@ -14,10 +14,12 @@ object Project : Project({
     description = "Configurations of the stages to getting a distribution that passes QA"
 
     buildType(Gradle_Branches_Checkpoints_Stage3LinuxWindowsBasicCoverageBasicCompatibility)
+    buildType(Gradle_Branches_Checkpoints_Stage4BranchCoverage)
     buildType(Gradle_Branches_Checkpoints_Stage4FullCoverage)
     buildType(Gradle_Branches_Checkpoints_Stage0Foundation)
     buildType(Gradle_Branches_Checkpoints_Stage2LinuxBasicCoverage)
-    buildType(Gradle_Branches_Checkpoints_Stage5Final)
+    buildType(Gradle_Branches_Checkpoints_Stage5Branch)
+    buildType(Gradle_Branches_Checkpoints_Stage5Full)
 
     params {
         param("env.JAVA_HOME", "%linux.java7.oracle.64bit%")

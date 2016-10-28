@@ -21,7 +21,7 @@ build/errorLogs/** => errorLogs"""
     maxRunningBuilds = 3
 
     vcs {
-        root("Gradle_Master")
+        root("Gradle_Branches_GradlePersonalBranches")
 
         checkoutMode = CheckoutMode.ON_AGENT
     }
