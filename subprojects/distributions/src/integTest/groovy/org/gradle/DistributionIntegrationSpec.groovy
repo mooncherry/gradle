@@ -35,6 +35,7 @@ abstract class DistributionIntegrationSpec extends AbstractIntegrationSpec {
     @Rule public final PreconditionVerifier preconditionVerifier = new PreconditionVerifier()
 
     @Shared String version = GradleVersion.current().version
+    @Shared String baseVersion = GradleVersion.current().baseVersion.version
 
     abstract String getDistributionLabel()
 
@@ -90,12 +91,12 @@ abstract class DistributionIntegrationSpec extends AbstractIntegrationSpec {
     protected TestFile unpackDistribution(type = getDistributionLabel()) {
         TestFile zip = getZip(type)
         zip.usingNativeTools().unzipTo(testDirectory)
-        TestFile contentsDir = file("gradle-$version")
-        contentsDir
+        assert testDirectory.listFiles().size() == 1
+        testDirectory.listFiles()[0]
     }
 
     protected TestFile getZip(String type = getDistributionLabel()) {
-        new IntegrationTestBuildContext().distributionsDir.file("gradle-$version-${type}.zip")
+        new IntegrationTestBuildContext().distributionsDir.file("gradle-$baseVersion-${type}.zip")
     }
 
     protected void checkMinimalContents(TestFile contentsDir) {
@@ -116,30 +117,30 @@ abstract class DistributionIntegrationSpec extends AbstractIntegrationSpec {
         assert coreLibs.size() == 20
         coreLibs.each { assertIsGradleJar(it) }
 
-        def toolingApiJar = contentsDir.file("lib/gradle-tooling-api-${version}.jar")
+        def toolingApiJar = contentsDir.file("lib/gradle-tooling-api-${baseVersion}.jar")
         toolingApiJar.assertIsFile()
-        assert toolingApiJar.length() < 340 * 1024; // tooling api jar is the small plain tooling api jar version and not the fat jar.
+        assert toolingApiJar.length() < 340 * 1024 // tooling api jar is the small plain tooling api jar version and not the fat jar.
 
         // Plugins
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-dependency-management-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-plugins-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-ide-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-scala-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-code-quality-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-antlr-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-announce-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-jetty-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-maven-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-osgi-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-signing-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-ear-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-platform-native-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-ide-native-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-native-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-platform-jvm-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-jvm-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-java-${version}.jar"))
-        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-groovy-${version}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-dependency-management-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-plugins-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-ide-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-scala-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-code-quality-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-antlr-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-announce-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-jetty-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-maven-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-osgi-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-signing-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-ear-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-platform-native-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-ide-native-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-native-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-platform-jvm-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-jvm-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-java-${baseVersion}.jar"))
+        assertIsGradleJar(contentsDir.file("lib/plugins/gradle-language-groovy-${baseVersion}.jar"))
 
         // Docs
         contentsDir.file('getting-started.html').assertIsFile()
@@ -151,7 +152,7 @@ abstract class DistributionIntegrationSpec extends AbstractIntegrationSpec {
 
     protected void assertIsGradleJar(TestFile jar) {
         jar.assertIsFile()
-        assertThat(jar.manifest.mainAttributes.getValue('Implementation-Version'), equalTo(version))
+        assertThat(jar.manifest.mainAttributes.getValue('Implementation-Version'), equalTo(baseVersion))
         assertThat(jar.manifest.mainAttributes.getValue('Implementation-Title'), equalTo('Gradle'))
     }
 }
