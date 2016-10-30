@@ -70,6 +70,10 @@ public class IntegrationTestBuildContext {
         return GradleVersion.current();
     }
 
+    public GradleVersion getDistZipVersion() {
+        return GradleVersion.version(System.getProperty("integTest.distZipVersion", GradleVersion.current().getVersion()));
+    }
+
     public TestFile getFatToolingApiJar() {
         TestFile toolingApiShadedJarDir = file("integTest.toolingApiShadedJarDir", "subprojects/tooling-api/build/shaded-jar");
         TestFile fatToolingApiJar = new TestFile(toolingApiShadedJarDir, String.format("gradle-tooling-api-shaded-%s.jar", getVersion().getVersion()));
