@@ -13,7 +13,7 @@ object Project : Project({
     extId = "Gradle_Branches"
     parentId = "Gradle"
     name = "Branches"
-    description = "Master configurations"
+    description = "Branches configurations"
 
     vcsRoot(Gradle_Branches_VersionedSettings)
 
