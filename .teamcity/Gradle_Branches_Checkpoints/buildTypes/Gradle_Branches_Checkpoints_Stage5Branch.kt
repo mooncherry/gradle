@@ -71,24 +71,6 @@ fi"""
                 onDependencyCancel = FailureAction.CANCEL
             }
         }
-        dependency(Gradle_Branches_CoveragePhase_LinuxCoverage.buildTypes.Gradle_Branches_CoveragePhase_LinuxCoverage_LinuxJava18GradleceptionBuildingGrad) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CoveragePhase_LinuxCoverage.buildTypes.Gradle_Branches_CoveragePhase_LinuxCoverage_LinuxJava18SmokeTestsAgainst3rdParty) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_Performance.buildTypes.Gradle_Branches_Performance_PerformanceTestCoordinatorLinux) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
     }
 
     requirements {

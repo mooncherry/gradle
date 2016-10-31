@@ -67,48 +67,6 @@ fi"""
                 onDependencyCancel = FailureAction.CANCEL
             }
         }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_2WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_3WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_4WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_5WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_6WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_7WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
-        dependency(Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17.buildTypes.Gradle_Branches_CommitPhase_WindowsCommit_WindowsCommitJava17_8WindowsCommitJava) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-                onDependencyCancel = FailureAction.CANCEL
-            }
-        }
     }
 
     requirements {
