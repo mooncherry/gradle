@@ -65,8 +65,8 @@ class JavaConfigurationDaemonPerformanceTest extends AbstractCrossVersionPerform
 
         where:
         testProject     | targetVersions
-        "bigOldJava"    | ['3.3-20161028000018+0000']
-        "mediumOldJava" | ['3.3-20161028000018+0000']
-        "smallOldJava"  | ['3.3-20161028000018+0000']
+        "bigOldJava"    | ['3.3-20161031000015+0000']
+        "mediumOldJava" | ['3.3-20161031000015+0000']
+        "smallOldJava"  | ['3.3-20161031000015+0000']
     }
 }
