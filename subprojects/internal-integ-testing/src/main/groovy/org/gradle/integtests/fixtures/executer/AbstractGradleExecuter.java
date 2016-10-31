@@ -631,8 +631,16 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
      * Performs cleanup at completion of the test.
      */
     public void cleanup() {
+        cleanupDaemons();
+    }
+
+    protected void cleanupDaemons() {
         for (File baseDir : customDaemonBaseDirs) {
-            new DaemonLogsAnalyzer(baseDir, gradleVersion.getVersion()).killAll();
+            try {
+                new DaemonLogsAnalyzer(baseDir, gradleVersion.getVersion()).killAll();
+            } catch (Exception e) {
+                getLogger().warn("Problem killing daemons of Gradle version " + gradleVersion + " in " + baseDir, e);
+            }
         }
     }
 
@@ -1041,4 +1049,8 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
         final List<String> implicitLauncherJvmArgs = new ArrayList<String>();
     }
 
+    @Override
+    public void stop() {
+        cleanup();
+    }
 }
