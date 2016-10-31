@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,8 @@
  * limitations under the License.
  */
 
-package org.gradle.performance.fixture;
+package org.gradle.integtests.fixtures.executer;
 
-import org.gradle.api.Action;
-import org.gradle.performance.measure.MeasuredOperation;
-
-public class OperationTimer {
-    public MeasuredOperation measure(final Action<? super MeasuredOperation> action) {
-        final MeasuredOperation result = new MeasuredOperation();
-        result.measure(new Runnable() {
-            @Override
-            public void run() {
-                action.execute(result);
-            }
-        });
-        return result;
-    }
+public interface DurationMeasurement {
+    void measure(Runnable runnable);
 }

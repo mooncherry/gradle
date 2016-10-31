@@ -393,4 +393,9 @@ public interface GradleExecuter extends Stoppable {
      * Sets flag to cleanup temp directory on shutdown of the executer
      */
     GradleExecuter withCleanupTempDirectory(boolean flag);
+
+    /**
+     * Measures the duration of the execution
+     */
+    GradleExecuter withDurationMeasurement(DurationMeasurement durationMeasurement);
 }

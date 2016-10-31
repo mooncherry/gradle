@@ -64,6 +64,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.gradle.integtests.fixtures.executer.AbstractGradleExecuter.CliDaemonArgument.*;
 import static org.gradle.integtests.fixtures.executer.OutputScrapingExecutionResult.STACK_TRACE_ELEMENT;
@@ -149,6 +150,7 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
 
     private TestFile tmpDir;
     private boolean cleanTempDirOnShutdown;
+    private DurationMeasurement durationMeasurement;
 
     protected AbstractGradleExecuter(GradleDistribution distribution, TestDirectoryProvider testDirectoryProvider) {
         this(distribution, testDirectoryProvider, GradleVersion.current());
@@ -201,6 +203,7 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
         profiler = System.getProperty(PROFILE_SYSPROP, "");
         interactive = false;
         checkDeprecations = true;
+        durationMeasurement = null;
         return this;
     }
 
@@ -847,7 +850,18 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
         assertCanExecute();
         collectStateBeforeExecution();
         try {
-            return doRun();
+            if (durationMeasurement != null) {
+                final AtomicReference<ExecutionResult> result = new AtomicReference<ExecutionResult>();
+                durationMeasurement.measure(new Runnable() {
+                    @Override
+                    public void run() {
+                        result.set(doRun());
+                    }
+                });
+                return result.get();
+            } else {
+                return doRun();
+            }
         } finally {
             finished();
         }
@@ -866,7 +880,18 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
         assertCanExecute();
         collectStateBeforeExecution();
         try {
-            return doRunWithFailure();
+            if (durationMeasurement != null) {
+                final AtomicReference<ExecutionFailure> result = new AtomicReference<ExecutionFailure>();
+                durationMeasurement.measure(new Runnable() {
+                    @Override
+                    public void run() {
+                        result.set(doRunWithFailure());
+                    }
+                });
+                return result.get();
+            } else {
+                return doRunWithFailure();
+            }
         } finally {
             finished();
         }
@@ -1092,5 +1117,11 @@ public abstract class AbstractGradleExecuter implements GradleExecuter {
     @Override
     public void stop() {
         cleanup();
+    }
+
+    @Override
+    public GradleExecuter withDurationMeasurement(DurationMeasurement durationMeasurement) {
+        this.durationMeasurement = durationMeasurement;
+        return this;
     }
 }
