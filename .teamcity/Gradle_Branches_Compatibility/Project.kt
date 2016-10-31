@@ -1,8 +1,6 @@
 package Gradle_Branches_Compatibility
 
 import Gradle_Branches_Compatibility.buildTypes.*
-import Gradle_Branches_Compatibility.vcsRoots.*
-import Gradle_Branches_Compatibility.vcsRoots.Gradle_Branches_Compatibility_GradleCompatibilityVersionedSettingsVcs
 import jetbrains.buildServer.configs.kotlin.v10.*
 import jetbrains.buildServer.configs.kotlin.v10.Project
 import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.VersionedSettings
