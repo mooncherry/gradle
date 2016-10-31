@@ -19,7 +19,6 @@ package org.gradle.testfixtures
 import org.gradle.integtests.fixtures.MultiVersionIntegrationSpec
 import org.gradle.integtests.fixtures.TargetVersions
 import org.gradle.integtests.fixtures.executer.GradleExecuter
-import org.gradle.integtests.fixtures.executer.IntegrationTestBuildContext
 import org.gradle.test.fixtures.file.TestFile
 import org.gradle.util.Requires
 import spock.lang.Issue
@@ -34,7 +33,6 @@ class ProjectBuilderCrossVersionIntegrationTest extends MultiVersionIntegrationS
     public static final List<String> BROKEN_GRADLE_VERSIONS = ['3.0', '3.1']
     public static final String TEST_TASK_NAME = 'test'
 
-    private final IntegrationTestBuildContext buildContext = new IntegrationTestBuildContext()
     private final List<GradleExecuter> executers = []
 
     def setup() {
